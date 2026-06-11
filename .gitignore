@@ -1,0 +1,22 @@
+# Virtual Environment
+venv/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Flask
+instance/
+
+# IDE
+.vscode/
+.idea/
+
+# Dataset & Models
+*.csv
+*.pkl
+
+# OS Files
+.DS_Store
+Thumbs.db

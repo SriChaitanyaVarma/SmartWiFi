@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>SmartWiFi Dashboard</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="header">
+            <h1>📡 SmartWiFi</h1>
+            <p>AI-Based Wi-Fi Performance Prediction & Channel Optimization</p>
+        </div>
+
+        <div class="cards">
+
+            <div class="card">
+                <h3>Networks Found</h3>
+                <h1>{{ networks|length }}</h1>
+            </div>
+
+            <div class="card">
+                <h3>Network Health</h3>
+                <h1>{{ network_health }}</h1>
+            </div>
+
+            <div class="card recommendation">
+                <h3>Recommended Channel</h3>
+                <h1>{{ recommendation.recommended_channel }}</h1>
+            </div>
+
+        </div>
+
+        <div class="table-container">
+
+            <h2>Nearby Networks</h2>
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>SSID</th>
+                        <th>Signal</th>
+                        <th>Channel</th>
+                        <th>Radio Type</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    {% for network in networks %}
+
+                    <tr>
+                        <td>{{ network.ssid }}</td>
+                        <td>{{ network.signal }}%</td>
+                        <td>{{ network.channel }}</td>
+                        <td>{{ network.radio_type }}</td>
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <div class="table-container">
+
+            <h2>Channel Analysis</h2>
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>Channel</th>
+                        <th>Networks</th>
+                        <th>Total Signal</th>
+                        <th>Interference Score</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    {% for channel, data in analysis.items() %}
+
+                    <tr>
+                        <td>{{ channel }}</td>
+                        <td>{{ data.count }}</td>
+                        <td>{{ data.total_signal }}</td>
+                        <td>{{ data.interference_score }}</td>
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <div class="table-container">
+
+            <h2>Recommendation Reason</h2>
+
+            <p>{{ recommendation_reason }}</p>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
